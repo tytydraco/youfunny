@@ -30,9 +30,11 @@ class Bot {
       final parser = Parser(messageText);
 
       String? url;
-      if (messageText.contains('https://ifunny.co/video')) {
+      if (messageText.startsWith('https://ifunny.co/video') &&
+          !messageText.contains(' ')) {
         url = await parser.getVideo();
-      } else if (messageText.contains('https://ifunny.co/picture')) {
+      } else if (messageText.startsWith('https://ifunny.co/picture') &&
+          !messageText.contains(' ')) {
         url = await parser.getVideo();
       }
 
