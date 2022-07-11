@@ -30,12 +30,19 @@ class Bot {
       final parser = Parser(messageText);
 
       String? url;
-      if (messageText.startsWith('https://ifunny.co/video') &&
-          !messageText.contains(' ')) {
-        url = await parser.getVideo();
-      } else if (messageText.startsWith('https://ifunny.co/picture') &&
-          !messageText.contains(' ')) {
-        url = await parser.getPicture();
+      final regex = RegExp(r'http.?://ifunny.co/(picture|video)/.*$');
+      final matches = regex.firstMatch(messageText);
+      final type = matches?.group(1);
+
+      if (!messageText.contains(' ') && type != null) {
+        switch (type) {
+          case 'picture':
+            url = await parser.getPicture();
+            break;
+          case 'video':
+            url = await parser.getVideo();
+            break;
+        }
       }
 
       // Skip if we did not parse anything of value here
