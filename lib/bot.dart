@@ -35,7 +35,7 @@ class Bot {
         url = await parser.getVideo();
       } else if (messageText.startsWith('https://ifunny.co/picture') &&
           !messageText.contains(' ')) {
-        url = await parser.getVideo();
+        url = await parser.getPicture();
       }
 
       // Skip if we did not parse anything of value here
