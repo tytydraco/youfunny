@@ -1,6 +1,6 @@
 name: youfunny
 description: A Discord bot to replace iFunny picture and video URLs with direct embedded URLs.
-version: 1.0.3
+version: 1.0.4
 repository: https://www.github.com/tytydraco/youfunny
 
 environment:
@@ -15,3 +15,6 @@ dev_dependencies:
   lints: ^2.0.0
   test: ^1.21.4
   very_good_analysis: ^3.0.1
+
+executables:
+  youfunny: main

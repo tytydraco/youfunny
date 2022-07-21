@@ -1,3 +1,7 @@
+## 1.0.4
+
+* Add as executable
+
 ## 1.0.3
 
 * Catch parser errors
