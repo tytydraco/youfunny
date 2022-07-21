@@ -2,9 +2,11 @@ import 'package:http/http.dart' as http;
 
 /// Fetch and parse the contents of a [url] from iFunny.
 class Parser {
-  final String url;
-
+  /// Create a new [Parser] given a [url].
   Parser(this.url);
+
+  /// URL to parse.
+  final String url;
 
   /// Get the raw HTML contents.
   Future<String?> _getHtml() async {
@@ -23,7 +25,7 @@ class Parser {
       return null;
     }
 
-    final regex = RegExp(r'<video.*?data-src="(.*?)".*?></video>');
+    final regex = RegExp('<video.*?data-src="(.*?)".*?></video>');
     return regex.firstMatch(html)?.group(1);
   }
 
@@ -34,7 +36,7 @@ class Parser {
       return null;
     }
 
-    final regex = RegExp(r'<img src="(.*?)".*?>');
+    final regex = RegExp('<img src="(.*?)".*?>');
     return regex.firstMatch(html)?.group(1);
   }
 }

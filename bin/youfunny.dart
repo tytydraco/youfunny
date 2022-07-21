@@ -7,16 +7,16 @@ Future<void> main(List<String> arguments) async {
   final parser = ArgParser();
   parser
     ..addFlag(
-        'help',
-        abbr: 'h',
-        help: 'Shows the usage',
-        negatable: false,
-        callback: (enabled) {
-          if (enabled) {
-            stdout.writeln(parser.usage);
-            exit(0);
-          }
-        },
+      'help',
+      abbr: 'h',
+      help: 'Shows the usage',
+      negatable: false,
+      callback: (enabled) {
+        if (enabled) {
+          stdout.writeln(parser.usage);
+          exit(0);
+        }
+      },
     )
     ..addOption(
       'token',
@@ -26,7 +26,7 @@ Future<void> main(List<String> arguments) async {
     );
 
   final options = parser.parse(arguments);
-  final String token = options['token'];
+  final token = options['token'] as String;
 
   // Start the bot
   final bot = Bot(token);

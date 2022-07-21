@@ -3,16 +3,19 @@ import 'package:youfunny/parser.dart';
 
 /// Initialize the Discord bot and listeners given a [token].
 class Bot {
-  final String token;
-  late final INyxxWebsocket _bot;
-
+  /// Generate a new [Bot] given a Discord [token].
   Bot(this.token) {
-    _bot = NyxxFactory
-        .createNyxxWebsocket(token, GatewayIntents.allUnprivileged);
+    _bot =
+        NyxxFactory.createNyxxWebsocket(token, GatewayIntents.allUnprivileged);
 
     _registerPlugins();
     _registerListener();
   }
+
+  /// Discord token to use.
+  final String token;
+
+  late final INyxxWebsocket _bot;
 
   /// Register logging and exception-catching functionality.
   void _registerPlugins() {
@@ -26,7 +29,7 @@ class Bot {
   /// direct URL embeds.
   void _registerListener() {
     _bot.eventsWs.onMessageReceived.listen((event) async {
-      final messageText = event.message.content.toString();
+      final messageText = event.message.content;
       final parser = Parser(messageText);
 
       String? url;
@@ -64,6 +67,6 @@ class Bot {
   /// Replace a [message] with a [url] embed.
   Future<void> _replaceMessageWithEmbed(IMessage message, String url) async {
     await message.delete(auditReason: 'Replaced with direct URL');
-    message.channel.sendMessage(_messageBuilderFromImageUrl(url));
+    await message.channel.sendMessage(_messageBuilderFromImageUrl(url));
   }
 }

@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Follow Very Good Analysis guidelines
+
 ## 1.0.1
 
 * Fix attempting to scrape URLs with extraneous text
