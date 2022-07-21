@@ -25,10 +25,15 @@ Future<void> main(List<String> arguments) async {
       mandatory: true,
     );
 
-  final options = parser.parse(arguments);
-  final token = options['token'] as String;
+  try {
+    final options = parser.parse(arguments);
+    final token = options['token'] as String;
 
-  // Start the bot
-  final bot = Bot(token);
-  await bot.connect();
+    // Start the bot
+    final bot = Bot(token);
+    await bot.connect();
+  } catch (e) {
+    stdout.writeln(e);
+    exit(1);
+  }
 }

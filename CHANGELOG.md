@@ -1,3 +1,7 @@
+## 1.0.3
+
+* Catch parser errors
+
 ## 1.0.2
 
 * Follow Very Good Analysis guidelines
