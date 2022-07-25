@@ -31,7 +31,10 @@ class Bot {
   }
 
   Future<void> _handleIncomingMessage(IMessage message) async {
+    final channel = message.channel;
+    final author = message.author.username;
     final messageText = message.content;
+
     final parser = IFunnyMediaParser(messageText);
     final mediaUrl = await parser.getMediaUrlFromMessage();
 
@@ -40,18 +43,15 @@ class Bot {
 
     // Send media embed.
     await message.delete(auditReason: 'Replaced with direct URL');
-    await message.channel.sendMessage(MessageBuilder.content(mediaUrl));
+    await channel.sendMessage(MessageBuilder.content(mediaUrl));
 
-    final author = message.author.username;
     final otherText = messageText.replaceFirst(mediaUrl, '').trim();
 
     // Send any text left afterwards (if there is any).
     if (otherText.isNotEmpty) {
-      await message.channel
-          .sendMessage(MessageBuilder.content('$author: $otherText'));
+      await channel.sendMessage(MessageBuilder.content('$author: $otherText'));
     } else {
-      await message.channel
-          .sendMessage(MessageBuilder.content('Sent by $author'));
+      await channel.sendMessage(MessageBuilder.content('Sent by $author'));
     }
   }
 
