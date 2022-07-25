@@ -36,16 +36,17 @@ class Bot {
     final messageText = message.content;
 
     final parser = IFunnyMediaParser(messageText);
+    final passedUrl = parser.getPassedUrlFromMessage();
     final mediaUrl = await parser.getMediaUrlFromMessage();
 
     // Skip if we did not parse anything of value here.
-    if (mediaUrl == null) return;
+    if (passedUrl == null || mediaUrl == null) return;
 
     // Send media embed.
     await message.delete(auditReason: 'Replaced with direct URL');
     await channel.sendMessage(MessageBuilder.content(mediaUrl));
 
-    final otherText = messageText.replaceFirst(mediaUrl, '').trim();
+    final otherText = messageText.replaceFirst(passedUrl, '').trim();
 
     // Send any text left afterwards (if there is any).
     if (otherText.isNotEmpty) {

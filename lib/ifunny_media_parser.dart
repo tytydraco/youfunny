@@ -8,17 +8,24 @@ class IFunnyMediaParser {
   /// Message string containing a URL to parse.
   final String messageText;
 
-  /// Parse the picture or video URL from a message.
+  /// Return the passed URL from a message.
+  ///
+  /// Returns null if the message failed to be parsed.
+  String? getPassedUrlFromMessage() {
+    final match = _getRegExpMatchFromMessage();
+    return match?.group(1);
+  }
+
+  /// Fetch the picture or video URL from a message.
   ///
   /// Returns null if the message failed to be parsed.
   Future<String?> getMediaUrlFromMessage() async {
-    final regex = RegExp('(http.?://ifunny.co/(picture|video)/[^ ]*)');
-    final matches = regex.firstMatch(messageText);
-    final url = matches?.group(1);
-    final type = matches?.group(2);
+    final match = _getRegExpMatchFromMessage();
+    final url = match?.group(1);
+    final type = match?.group(2);
 
     // Skip ambiguous URLs.
-    if (matches == null || url == null || type == null) return null;
+    if (match == null || url == null || type == null) return null;
 
     final html = await _getHtml(url);
     // Skip if HTML cannot be fetched.
@@ -32,6 +39,14 @@ class IFunnyMediaParser {
       default:
         return null;
     }
+  }
+
+  /// Return the first match of an iFunny URL with the following groups:
+  /// 0: passed URL
+  /// 1: type (picture or video)
+  RegExpMatch? _getRegExpMatchFromMessage() {
+    final regex = RegExp('(http.?://ifunny.co/(picture|video)/[^ ]*)');
+    return regex.firstMatch(messageText);
   }
 
   /// Get the raw HTML contents.

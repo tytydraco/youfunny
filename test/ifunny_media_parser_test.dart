@@ -1,12 +1,14 @@
 import 'package:test/test.dart';
 import 'package:youfunny/ifunny_media_parser.dart';
 
+const examplePictureUrl =
+    'https://ifunny.co/picture/my-bladder-my-bladder-holding-holding-piss-for-9-piss-7K4foiBj9';
+const exampleVideoUrl = 'https://ifunny.co/video/CkXvQLCj9?s=cl';
+
 void main() {
   group('Parser', () {
     test('Picture without other text', () async {
-      final parser = IFunnyMediaParser(
-        'https://ifunny.co/picture/my-bladder-my-bladder-holding-holding-piss-for-9-piss-7K4foiBj9',
-      );
+      final parser = IFunnyMediaParser(examplePictureUrl);
 
       expect(
         await parser.getMediaUrlFromMessage(),
@@ -15,9 +17,7 @@ void main() {
     });
 
     test('Video without other text', () async {
-      final parser = IFunnyMediaParser(
-        'https://ifunny.co/video/CkXvQLCj9?s=cl',
-      );
+      final parser = IFunnyMediaParser(exampleVideoUrl);
 
       expect(
         await parser.getMediaUrlFromMessage(),
@@ -27,7 +27,12 @@ void main() {
 
     test('Picture with other text', () async {
       final parser = IFunnyMediaParser(
-        'Look at the funny! https://ifunny.co/picture/my-bladder-my-bladder-holding-holding-piss-for-9-piss-7K4foiBj9',
+        'Look at the funny! $examplePictureUrl',
+      );
+
+      expect(
+        parser.getPassedUrlFromMessage(),
+        examplePictureUrl,
       );
 
       expect(
@@ -37,8 +42,11 @@ void main() {
     });
 
     test('Video with other text', () async {
-      final parser = IFunnyMediaParser(
-        'Look at the funny! https://ifunny.co/video/CkXvQLCj9?s=cl',
+      final parser = IFunnyMediaParser(exampleVideoUrl);
+
+      expect(
+        parser.getPassedUrlFromMessage(),
+        exampleVideoUrl,
       );
 
       expect(
