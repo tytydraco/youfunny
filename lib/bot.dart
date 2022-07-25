@@ -5,9 +5,6 @@ import 'package:youfunny/parser.dart';
 class Bot {
   /// Generate a new [Bot] given a Discord [token].
   Bot(this.token) {
-    _bot =
-        NyxxFactory.createNyxxWebsocket(token, GatewayIntents.allUnprivileged);
-
     _registerPlugins();
     _registerListener();
   }
@@ -15,7 +12,8 @@ class Bot {
   /// Discord token to use.
   final String token;
 
-  late final INyxxWebsocket _bot;
+  late final INyxxWebsocket _bot =
+      NyxxFactory.createNyxxWebsocket(token, GatewayIntents.allUnprivileged);
 
   /// Register logging and exception-catching functionality.
   void _registerPlugins() {

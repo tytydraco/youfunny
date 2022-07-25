@@ -1,3 +1,7 @@
+## 1.0.5
+
+* Inline late init variable
+
 ## 1.0.4
 
 * Add as executable
