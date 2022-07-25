@@ -1,6 +1,9 @@
 ## 1.0.5
 
 * Inline late init variable
+* Clean up redundant code
+* If message contains extra text, send it afterwards
+* Credit original sender
 
 ## 1.0.4
 
