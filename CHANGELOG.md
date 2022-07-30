@@ -1,3 +1,7 @@
+## 1.0.5+1
+
+* Convert LICENSE to 2-Clause BSD
+
 ## 1.0.5
 
 * Inline late init variable
