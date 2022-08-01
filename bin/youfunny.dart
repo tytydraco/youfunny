@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:youfunny/bot.dart';
+import 'package:youfunny/youfunny.dart';
 
 Future<void> main(List<String> arguments) async {
   final parser = ArgParser();
@@ -30,7 +30,7 @@ Future<void> main(List<String> arguments) async {
     final token = options['token'] as String;
 
     // Start the bot
-    final bot = Bot(token);
+    final bot = YouFunny(token);
     await bot.connect();
   } catch (e) {
     stdout.writeln(e);

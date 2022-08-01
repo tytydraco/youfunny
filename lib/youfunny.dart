@@ -2,9 +2,9 @@ import 'package:nyxx/nyxx.dart';
 import 'package:youfunny/src/ifunny_media_parser.dart';
 
 /// Initialize the Discord bot and listeners given a [token].
-class Bot {
-  /// Generate a new [Bot] given a Discord [token].
-  Bot(this.token) {
+class YouFunny {
+  /// Generate a new [YouFunny] given a Discord [token].
+  YouFunny(this.token) {
     _registerPlugins();
     _registerListener();
   }
