@@ -1,3 +1,7 @@
+## 1.0.5+2
+
+* Improve package structure
+
 ## 1.0.5+1
 
 * Convert LICENSE to 2-Clause BSD

@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:youfunny/ifunny_media_parser.dart';
+import 'package:youfunny/src/ifunny_media_parser.dart';
 
 const examplePictureUrl =
     'https://ifunny.co/picture/my-bladder-my-bladder-holding-holding-piss-for-9-piss-7K4foiBj9';

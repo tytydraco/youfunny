@@ -1,5 +1,5 @@
 import 'package:nyxx/nyxx.dart';
-import 'package:youfunny/ifunny_media_parser.dart';
+import 'package:youfunny/src/ifunny_media_parser.dart';
 
 /// Initialize the Discord bot and listeners given a [token].
 class Bot {
