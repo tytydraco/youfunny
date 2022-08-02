@@ -1,3 +1,7 @@
+## 1.0.6
+
+* Proper package structure
+
 ## 1.0.5+2
 
 * Improve package structure

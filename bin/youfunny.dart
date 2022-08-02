@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:youfunny/youfunny.dart';
+import 'package:youfunny/src/youfunny.dart';
 
 Future<void> main(List<String> arguments) async {
   final parser = ArgParser();
