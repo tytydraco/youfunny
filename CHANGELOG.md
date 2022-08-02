@@ -1,6 +1,7 @@
 ## 1.0.6
 
-* Proper package structure
+* Convert from lib to app
+* Remove example
 
 ## 1.0.5+2
 
